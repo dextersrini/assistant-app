@@ -5,12 +5,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.assistant.app.model.Assistant;
 import com.assistant.app.model.WeatherLocation;
 import com.google.gson.Gson;
 
@@ -24,6 +26,9 @@ import com.google.gson.Gson;
 @RestController
 @RequestMapping(path = "/weatherapi")
 public class APIWeather {
+	@Autowired
+	Assistant assistantProps;
+	
 	@GetMapping("/{city}")
 	public String getCurrentWeather(@PathVariable(name = "city") String city) {
 
@@ -31,7 +36,9 @@ public class APIWeather {
 	}
 
 	private String getCurrentWeatherByCity(String city) {
-
+		System.out.println(assistantProps.getAppname());
+		System.out.println(assistantProps.getAppage());
+		System.out.println(assistantProps.getAppscope());
 		/**
 		 * Get WOEID first before weather
 		 */

@@ -1,5 +1,8 @@
 package com.assistant.app.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class WeatherData {
 	public String getCity() {
 		return city;
